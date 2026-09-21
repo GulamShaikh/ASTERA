@@ -20,6 +20,10 @@ pnpm-debug.log*
 .env.*
 !.env.example
 
+# MCP config holds real API keys locally — never commit it
+.mcp.json
+!.mcp.json.example
+
 # Claude Code local settings (personal/machine-specific, not shared)
 .claude/settings.local.json
 
