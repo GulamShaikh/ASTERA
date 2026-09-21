@@ -1,0 +1,25 @@
+/*
+  ASTERA design tokens — mirrors docs/DESIGN_SYSTEM.md "Colors" 1:1.
+  Change a value here, not in components. Tailwind's @theme turns each
+  --color-* variable below into utilities automatically (e.g. bg-midnight,
+  text-cosmic-blue).
+
+  --color-champagne is the one addition beyond DESIGN_SYSTEM.md's base
+  palette: the "restrained warm gold/champagne accent" called for in
+  CLAUDE.md, sampled from the approved Stitch homepage reference (see
+  docs/DECISIONS.md). Neutral/border tones (slate-*) come from Tailwind's
+  built-in palette rather than new tokens, since they already match the
+  approved design system's documented hex values.
+*/
+@theme {
+  --color-space-black: #111111;
+  --color-midnight: #0b132b;
+  --color-cosmic-blue: #2563eb;
+  --color-cosmic-blue-light: #8ec5ff;
+  --color-starlight: #e5e7eb;
+  --color-white: #ffffff;
+  --color-champagne: #e2c08d;
+
+  --font-sans: 'Plus Jakarta Sans', system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif;
+  --font-heading: 'Outfit', 'Plus Jakarta Sans', system-ui, sans-serif;
+}
