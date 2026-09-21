@@ -1,3 +1,4 @@
+import { usePageTitle } from '../hooks/usePageTitle'
 import { Hero } from '../components/home/Hero'
 import { CategoryShowcase } from '../components/home/CategoryShowcase'
 import { NewArrivals } from '../components/home/NewArrivals'
@@ -7,6 +8,8 @@ import { OnlineExperience } from '../components/home/OnlineExperience'
 import { FinalCta } from '../components/home/FinalCta'
 
 export function Home() {
+  usePageTitle('ASTERA — Exploring New Brands. Delivering Quality.')
+
   return (
     <main>
       <Hero />

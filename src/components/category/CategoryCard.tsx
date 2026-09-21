@@ -14,7 +14,7 @@ export function CategoryCard({ category }: CategoryCardProps) {
         <h3 className="font-heading text-lg font-semibold text-space-black">{category.name}</h3>
         <p className="text-sm leading-relaxed text-slate-600">{category.description}</p>
       </div>
-      <TextLink href={category.href} className="mt-auto">
+      <TextLink href={`/shop?category=${encodeURIComponent(category.name)}`} className="mt-auto">
         Explore {category.name}
       </TextLink>
     </div>

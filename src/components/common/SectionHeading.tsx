@@ -11,6 +11,8 @@ type SectionHeadingProps = {
   accent?: Accent
   align?: 'left' | 'center'
   action?: ReactNode
+  /** Use 'h1' for a page's own top-level heading (e.g. a dedicated page like Shop). Defaults to 'h2' for a homepage section. */
+  level?: 'h1' | 'h2'
 }
 
 const ACCENT_CLASSES: Record<Accent, string> = {
@@ -26,10 +28,12 @@ export function SectionHeading({
   accent = 'champagne',
   align = 'left',
   action,
+  level = 'h2',
 }: SectionHeadingProps) {
   const headingColor = tone === 'dark' ? 'text-white' : 'text-space-black'
   const descriptionColor = tone === 'dark' ? 'text-starlight/75' : 'text-slate-600'
   const alignment = align === 'center' ? 'items-center text-center mx-auto' : 'items-start text-left'
+  const Heading = level
 
   return (
     <div className={`flex flex-col gap-3 ${alignment} ${align === 'center' ? 'max-w-2xl' : 'max-w-2xl'}`}>
@@ -39,9 +43,9 @@ export function SectionHeading({
         </span>
         {action && align === 'left' && <span className="hidden sm:block">{action}</span>}
       </div>
-      <h2 className={`font-heading text-3xl font-semibold tracking-tight sm:text-4xl ${headingColor}`}>
+      <Heading className={`font-heading text-3xl font-semibold tracking-tight sm:text-4xl ${headingColor}`}>
         {heading}
-      </h2>
+      </Heading>
       {description && <p className={`text-base leading-relaxed ${descriptionColor}`}>{description}</p>}
     </div>
   )

@@ -50,10 +50,10 @@ export function OnlineExperience() {
           </div>
 
           <div className="flex flex-wrap gap-3">
-            <Button href="#new-arrivals" variant="primary" withArrow>
+            <Button href="/shop" variant="primary" withArrow>
               Start Shopping
             </Button>
-            <Button href="#categories" variant="secondary-dark">
+            <Button href="/shop" variant="secondary-dark">
               Browse Categories
             </Button>
           </div>

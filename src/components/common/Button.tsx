@@ -1,4 +1,5 @@
 import type { AnchorHTMLAttributes, ButtonHTMLAttributes, ReactNode } from 'react'
+import { Link } from 'react-router-dom'
 import { IconArrowRight } from './icons'
 
 type Variant = 'primary' | 'secondary-dark' | 'secondary-light'
@@ -30,8 +31,18 @@ export function Button({ variant = 'primary', withArrow = false, children, class
   const classes = `${BASE_CLASSES} ${VARIANT_CLASSES[variant]} ${className}`
 
   if (href) {
+    const anchorProps = rest as AnchorHTMLAttributes<HTMLAnchorElement>
+    // Internal routes (start with "/") get real SPA navigation via Link; anything else (e.g. "#" placeholders) stays a plain anchor.
+    if (href.startsWith('/')) {
+      return (
+        <Link to={href} className={classes} {...anchorProps}>
+          {children}
+          {withArrow && <IconArrowRight className="h-4 w-4" />}
+        </Link>
+      )
+    }
     return (
-      <a href={href} className={classes} {...(rest as AnchorHTMLAttributes<HTMLAnchorElement>)}>
+      <a href={href} className={classes} {...anchorProps}>
         {children}
         {withArrow && <IconArrowRight className="h-4 w-4" />}
       </a>

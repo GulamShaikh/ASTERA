@@ -190,3 +190,22 @@ export function IconMail(props: IconProps) {
     </svg>
   )
 }
+
+export function IconChevronDown(props: IconProps) {
+  return (
+    <svg {...base} {...props}>
+      <path d="m6 9 6 6 6-6" />
+    </svg>
+  )
+}
+
+export function IconPackageSearch(props: IconProps) {
+  return (
+    <svg {...base} {...props}>
+      <path d="M3.5 8.5 12 4l8.5 4.5v7L12 20l-8.5-4.5v-7Z" strokeLinejoin="round" />
+      <path d="M3.5 8.5 12 13l8.5-4.5M12 13v7" />
+      <circle cx="18" cy="17.5" r="3" />
+      <path d="m20.5 20 1.5 1.5" />
+    </svg>
+  )
+}

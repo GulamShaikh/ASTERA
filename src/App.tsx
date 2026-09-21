@@ -1,14 +1,16 @@
-import { Footer } from './components/layout/Footer'
-import { Header } from './components/layout/Header'
+import { Route, Routes } from 'react-router-dom'
+import { RootLayout } from './components/layout/RootLayout'
 import { Home } from './pages/Home'
+import { Shop } from './pages/Shop'
 
 function App() {
   return (
-    <div className="flex min-h-screen flex-col">
-      <Header />
-      <Home />
-      <Footer />
-    </div>
+    <Routes>
+      <Route element={<RootLayout />}>
+        <Route path="/" element={<Home />} />
+        <Route path="/shop" element={<Shop />} />
+      </Route>
+    </Routes>
   )
 }
 

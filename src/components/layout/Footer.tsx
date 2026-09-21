@@ -1,31 +1,36 @@
+import { Link } from 'react-router-dom'
 import { Logo } from '../brand/Logo'
 import { Container } from '../common/Container'
 import { Button } from '../common/Button'
+import { categories } from '../../data/categories'
+
+const FEATURED_CATEGORY_IDS = ['chargers', 'cables', 'earphones', 'screen-protectors']
+
+function categoryHref(name: string) {
+  return `/shop?category=${encodeURIComponent(name)}`
+}
 
 const FOOTER_COLUMNS = [
   {
     heading: 'Shop',
     links: [
-      { label: 'New Arrivals', href: '#new-arrivals' },
-      { label: 'Categories', href: '#categories' },
-      { label: 'Brand Discovery', href: '#brand-discovery' },
+      { label: 'All Products', href: '/shop' },
+      { label: 'New Arrivals', href: '/shop' },
+      { label: 'Brand Discovery', href: '/#brand-discovery' },
     ],
   },
   {
     heading: 'Categories',
-    links: [
-      { label: 'Chargers', href: '#new-arrivals' },
-      { label: 'Cables', href: '#new-arrivals' },
-      { label: 'Audio & Earbuds', href: '#new-arrivals' },
-      { label: 'Protection', href: '#new-arrivals' },
-    ],
+    links: categories
+      .filter((category) => FEATURED_CATEGORY_IDS.includes(category.id))
+      .map((category) => ({ label: category.name, href: categoryHref(category.name) })),
   },
   {
     heading: 'Company',
     links: [
-      { label: 'About ASTERA', href: '#why-astera' },
-      { label: 'Partner Brands', href: '#brand-discovery' },
-      { label: 'Brand Criteria', href: '#why-astera' },
+      { label: 'About ASTERA', href: '/#why-astera' },
+      { label: 'Partner Brands', href: '/#brand-discovery' },
+      { label: 'Brand Criteria', href: '/#why-astera' },
     ],
   },
 ]
@@ -51,9 +56,9 @@ export function Footer() {
               <ul className="flex flex-col gap-2.5">
                 {column.links.map((link) => (
                   <li key={link.label}>
-                    <a href={link.href} className="text-sm text-starlight/75 hover:text-white">
+                    <Link to={link.href} className="text-sm text-starlight/75 hover:text-white">
                       {link.label}
-                    </a>
+                    </Link>
                   </li>
                 ))}
               </ul>

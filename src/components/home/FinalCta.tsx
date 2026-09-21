@@ -18,10 +18,10 @@ export function FinalCta() {
         </p>
 
         <div className="mt-2 flex flex-wrap justify-center gap-3">
-          <Button href="#new-arrivals" variant="primary" withArrow>
+          <Button href="/shop" variant="primary" withArrow>
             Explore Products
           </Button>
-          <Button href="#categories" variant="secondary-dark">
+          <Button href="/shop" variant="secondary-dark">
             Browse Categories
           </Button>
         </div>
