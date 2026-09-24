@@ -22,10 +22,19 @@ pnpm-debug.log*
 
 # MCP config holds real API keys locally — never commit it
 .mcp.json
-!.mcp.json.example
+.mcp.json.example
 
-# Claude Code local settings (personal/machine-specific, not shared)
-.claude/settings.local.json
+# Claude Code project files and internal process/planning docs — kept locally
+# for continued development, not published to the client-facing repo
+.claude/
+CLAUDE.md
+docs/BUILD_ROADMAP.md
+docs/DECISIONS.md
+docs/LEARNING_LOG.md
+
+# Raw design-exploration exports (kept locally in case the logo needs
+# reworking later) — brand/logo/ (final source SVGs) stays tracked
+brand/references/
 
 # Editor / OS
 .vscode/*

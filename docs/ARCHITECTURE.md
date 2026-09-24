@@ -33,9 +33,6 @@ src/
 
 public/
 docs/
-
-CLAUDE.md
-DESIGN.md
 ```
 
 ## Data model direction
@@ -116,7 +113,11 @@ For a first marketing/catalogue site, static/data-driven content is preferable.
 **Status (2026-09-23): that threshold has been crossed.** The browser-based
 admin catalogue requirement (persistent product administration) means the
 site now needs a real backend. Chosen: **Supabase** (Postgres + Auth +
-Storage). See `docs/DECISIONS.md` for the Supabase-vs-Firebase reasoning.
+Storage) over Firebase/Firestore — the catalogue's data is inherently
+relational (a product belongs to exactly one brand and one category, each
+with its own publish/archive lifecycle), which maps directly onto Postgres +
+Row Level Security, whereas a document store would need denormalization for
+the same joins and per-row access rules.
 
 - Schema, RLS policies, storage buckets, and demo-data seed live in
   `supabase/migrations/` (run manually via the Supabase SQL Editor until the
