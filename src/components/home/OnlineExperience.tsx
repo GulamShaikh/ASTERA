@@ -1,7 +1,9 @@
 import { Container } from '../common/Container'
 import { SectionHeading } from '../common/SectionHeading'
 import { Button } from '../common/Button'
-import { IconSearch, IconInfo, IconTruck, IconHeadset } from '../common/icons'
+import { WhatsAppButton } from '../common/WhatsAppButton'
+import { generalEnquiryMessage } from '../../lib/whatsapp'
+import { IconSearch, IconInfo, IconWhatsApp, IconHeadset } from '../common/icons'
 
 const FEATURES = [
   {
@@ -15,9 +17,9 @@ const FEATURES = [
     description: 'Transparent specifications and compatibility details before you buy.',
   },
   {
-    icon: IconTruck,
-    title: 'Flexible Shopping',
-    description: 'Simple checkout options designed for modern online retail.',
+    icon: IconWhatsApp,
+    title: 'Direct WhatsApp Enquiry',
+    description: 'Ask about availability and details straight from any product page.',
   },
   {
     icon: IconHeadset,
@@ -53,7 +55,7 @@ export function OnlineExperience() {
             <Button href="/shop" variant="primary" withArrow>
               Start Shopping
             </Button>
-            <Button href="/shop" variant="secondary-dark">
+            <Button href="/categories" variant="secondary-dark">
               Browse Categories
             </Button>
           </div>
@@ -82,9 +84,13 @@ export function OnlineExperience() {
               <p className="text-sm font-semibold text-white">Have a Question Before You Order?</p>
               <p className="mt-1 text-sm text-starlight/65">Get guidance on ports, wattage, and compatibility before you buy.</p>
             </div>
-            <Button variant="secondary-dark" className="shrink-0 px-4 py-2 text-xs">
-              Get in Touch
-            </Button>
+            <WhatsAppButton
+              message={generalEnquiryMessage()}
+              variant="secondary-dark"
+              className="shrink-0 px-4 py-2 text-xs"
+            >
+              Ask on WhatsApp
+            </WhatsAppButton>
           </div>
         </div>
       </Container>

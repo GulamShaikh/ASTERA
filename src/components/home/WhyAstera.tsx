@@ -21,8 +21,8 @@ const PILLARS = [
   },
   {
     icon: IconShoppingBag,
-    title: 'Easy Online Shopping',
-    description: 'Streamlined online browsing, straightforward checkout, and responsive support.',
+    title: 'Easy Online Browsing',
+    description: 'A clear, searchable catalogue with a direct WhatsApp line to ask before you decide.',
   },
 ]
 

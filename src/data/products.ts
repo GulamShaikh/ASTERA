@@ -1,25 +1,12 @@
 import { IconBolt, IconCable, IconHeadphones, IconPhoneCase } from '../components/common/icons'
-import type { ComponentType, SVGProps } from 'react'
-
-export type Product = {
-  id: string
-  name: string
-  brand: string
-  category: string
-  price?: number
-  /** Real product photo, sourced from the approved Stitch design. Falls back to `icon` when absent. */
-  image?: string
-  /** Placeholder visual used until real product photography is supplied for this item. */
-  icon: ComponentType<SVGProps<SVGSVGElement>>
-  description: string
-  featured?: boolean
-}
+import type { Product } from '../types/catalogue'
 
 /**
- * Demo catalogue data — no real ASTERA catalogue or pricing exists yet.
- * Product photography (where present via `image`) comes from the approved
- * Stitch "v3 Production Ready" design. Replace with the real catalogue
- * before launch; the shape below is the contract the UI expects.
+ * Reference fixtures only — the live site reads this catalogue from Supabase
+ * via src/lib/api/products.ts. These mirror the rows seeded by
+ * supabase/migrations/20260923040000_seed_demo_data.sql and are kept as a
+ * development reference until the database migration is proven in production.
+ * Nothing in src/pages or src/components imports this file.
  */
 export const products: Product[] = [
   {

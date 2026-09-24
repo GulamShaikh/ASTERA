@@ -1,4 +1,4 @@
-import type { Product } from '../data/products'
+import type { Product } from '../types/catalogue'
 
 export const ALL_CATEGORIES = 'All Products'
 

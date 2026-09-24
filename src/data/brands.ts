@@ -1,16 +1,10 @@
-export type Brand = {
-  id: string
-  name: string
-  category: string
-  description: string
-  local?: boolean
-  featured?: boolean
-}
+import type { Brand } from '../types/catalogue'
 
 /**
- * Demo brand-discovery data — ASTERA has not onboarded real partner brands
- * yet. Names use role descriptors rather than invented company names; swap
- * in real brand profiles as partnerships are confirmed.
+ * Reference fixtures only — the live site reads brands from Supabase via
+ * src/lib/api/brands.ts. Names use role descriptors rather than invented
+ * company names. Mirrors the seeded rows; kept as a development reference
+ * until the database migration is proven in production.
  */
 export const brands: Brand[] = [
   {

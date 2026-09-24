@@ -115,6 +115,24 @@ export function IconStar(props: IconProps) {
   )
 }
 
+export function IconLock(props: IconProps) {
+  return (
+    <svg {...base} {...props}>
+      <rect x="5" y="11" width="14" height="10" rx="2" />
+      <path d="M8 11V7a4 4 0 0 1 8 0v4" />
+    </svg>
+  )
+}
+
+/** Filled four-point sparkle — decorative accent (the one filled glyph in this set). */
+export function IconSparkle(props: IconProps) {
+  return (
+    <svg {...base} fill="currentColor" stroke="none" {...props}>
+      <path d="M12 1.5c.7 5.6 3.4 8.6 9.5 10.5-6.1 1.9-8.8 4.9-9.5 10.5-.7-5.6-3.4-8.6-9.5-10.5 6.1-1.9 8.8-4.9 9.5-10.5Z" />
+    </svg>
+  )
+}
+
 export function IconSearch(props: IconProps) {
   return (
     <svg {...base} {...props}>
@@ -195,6 +213,15 @@ export function IconChevronDown(props: IconProps) {
   return (
     <svg {...base} {...props}>
       <path d="m6 9 6 6 6-6" />
+    </svg>
+  )
+}
+
+export function IconWhatsApp(props: IconProps) {
+  return (
+    <svg {...base} {...props}>
+      <path d="M4 20.5 5.2 16A8.5 8.5 0 1 1 8 18.8Z" strokeLinejoin="round" />
+      <path d="M9 9.6c0 3.2 2.6 5.8 5.8 5.8.5 0 .8-.5.6-1l-.5-1.2c-.2-.4-.6-.5-1-.4l-.7.3a4.4 4.4 0 0 1-2.3-2.3l.3-.7c.1-.4 0-.8-.4-1l-1.2-.5c-.5-.2-1 .1-1 .6-.1.1-.1.3-.1.4Z" />
     </svg>
   )
 }

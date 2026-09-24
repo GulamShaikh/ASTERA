@@ -19,6 +19,8 @@
   --color-starlight: #e5e7eb;
   --color-white: #ffffff;
   --color-champagne: #e2c08d;
+  /* Solid raised-card surface on dark sections (Stitch "surface-container-low"); keeps cards opaque over the starfield. */
+  --color-surface: #171a1f;
 
   --font-sans: 'Plus Jakarta Sans', system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif;
   --font-heading: 'Outfit', 'Plus Jakarta Sans', system-ui, sans-serif;

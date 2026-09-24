@@ -7,15 +7,13 @@ import {
   IconShield,
   IconHub,
 } from '../components/common/icons'
-import type { ComponentType, SVGProps } from 'react'
+import type { Category } from '../types/catalogue'
 
-export type Category = {
-  id: string
-  name: string
-  description: string
-  icon: ComponentType<SVGProps<SVGSVGElement>>
-}
-
+/**
+ * Reference fixtures only — the live site reads categories from Supabase via
+ * src/lib/api/categories.ts. Mirrors the seeded rows; kept as a development
+ * reference until the database migration is proven in production.
+ */
 export const categories: Category[] = [
   {
     id: 'chargers',

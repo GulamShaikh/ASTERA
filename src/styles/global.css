@@ -34,3 +34,175 @@ body {
   outline: 2px solid var(--color-cosmic-blue);
   outline-offset: 2px;
 }
+
+@keyframes orbit-rotate {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+@keyframes orbit-rotate-reverse {
+  to {
+    transform: rotate(-360deg);
+  }
+}
+
+@keyframes sparkle-twinkle {
+  0%,
+  100% {
+    opacity: 0.45;
+    transform: scale(0.82) rotate(0deg);
+  }
+  50% {
+    opacity: 1;
+    transform: scale(1) rotate(12deg);
+  }
+}
+
+/* Hero orbit: slow enough to feel calm, fast enough that the ring dots visibly travel. */
+.orbit-ring {
+  transform-origin: 50% 50%;
+  animation: orbit-rotate 60s linear infinite;
+}
+
+.orbit-ring-reverse {
+  transform-origin: 50% 50%;
+  animation: orbit-rotate-reverse 42s linear infinite;
+}
+
+.sparkle {
+  transform-origin: 50% 50%;
+  animation: sparkle-twinkle 4s ease-in-out infinite;
+}
+
+/* Negative delay offsets the second sparkle so the two never pulse in sync. */
+.sparkle-delayed {
+  animation-delay: -2s;
+}
+
+/* Starfield (src/components/common/Starfield.tsx) — per-star delay/duration come from inline styles. */
+.star {
+  position: absolute;
+  border-radius: 9999px;
+  background: var(--color-starlight);
+}
+
+.star-bright {
+  box-shadow: 0 0 6px 1px rgba(229, 231, 235, 0.45);
+}
+
+.star-twinkle {
+  animation: star-twinkle 5s ease-in-out infinite;
+}
+
+@keyframes star-twinkle {
+  0%,
+  100% {
+    opacity: 0.1;
+  }
+  50% {
+    opacity: 1;
+  }
+}
+
+/* Four-point glints: fade in while turning slightly, hold, fade out — reads as a star catching the light. */
+.star-glint {
+  position: absolute;
+  opacity: 0;
+  filter: drop-shadow(0 0 4px rgba(229, 231, 235, 0.55));
+  animation: star-glint 6s ease-in-out infinite;
+}
+
+@keyframes star-glint {
+  0%,
+  100% {
+    opacity: 0;
+    transform: scale(0.3) rotate(0deg);
+  }
+  40%,
+  60% {
+    opacity: 0.95;
+    transform: scale(1) rotate(25deg);
+  }
+}
+
+/* One comet on a gently tilted track: crosses in ~2.5s, then rests for the remainder of the 10s cycle. */
+.comet-track {
+  position: absolute;
+  left: -10%;
+  top: 8%;
+  width: 120%;
+  height: 0;
+  transform: rotate(11deg);
+  transform-origin: left center;
+}
+
+.comet {
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 190px;
+  height: 2px;
+  border-radius: 9999px;
+  background: linear-gradient(90deg, rgba(142, 197, 255, 0), rgba(229, 231, 235, 0.55) 60%, rgba(255, 255, 255, 0.95));
+  opacity: 0;
+  animation: comet-fly 10s cubic-bezier(0.4, 0, 0.6, 1) 1.5s infinite;
+}
+
+.comet::after {
+  content: '';
+  position: absolute;
+  right: -2px;
+  top: 50%;
+  width: 4px;
+  height: 4px;
+  margin-top: -2px;
+  border-radius: 9999px;
+  background: #fff;
+  box-shadow:
+    0 0 10px 3px rgba(142, 197, 255, 0.7),
+    0 0 2px 1px #fff;
+}
+
+@keyframes comet-fly {
+  0% {
+    transform: translateX(-200px);
+    opacity: 0;
+  }
+  3% {
+    opacity: 1;
+  }
+  20% {
+    opacity: 0.9;
+  }
+  25%,
+  100% {
+    transform: translateX(110vw);
+    opacity: 0;
+  }
+}
+
+/*
+  Reduced motion: anything that *moves* (orbit rotation, comet, turning glints) stops. Opacity-only
+  twinkling is not motion, so stars keep a slow gentle fade. !important is needed to beat the global
+  `*` reduced-motion rule above, which otherwise freezes every animation after one frame.
+*/
+@media (prefers-reduced-motion: reduce) {
+  .orbit-ring,
+  .orbit-ring-reverse {
+    animation: none;
+  }
+
+  .star-twinkle,
+  .star-glint,
+  .sparkle {
+    animation-name: star-twinkle !important;
+    animation-duration: 6s !important;
+    animation-iteration-count: infinite !important;
+    animation-timing-function: ease-in-out !important;
+  }
+
+  .comet-track {
+    display: none;
+  }
+}

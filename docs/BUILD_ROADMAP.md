@@ -70,6 +70,24 @@ Tasks:
 - brand detail structure
 - explain ASTERA's curation philosophy
 
+## Phase 4b - Supabase backend (done 2026-09-23)
+- Postgres schema, RLS policies, storage buckets, demo seed
+- Explicit table grants for `anon` / `authenticated`
+- `src/lib/api/*` data-access layer
+
+## Phase 5b - Multi-page public site (done 2026-09-23)
+- `/`, `/shop`, `/product/:slug`, `/categories(+/:slug)`, `/brands(+/:slug)`,
+  `/about`, `/contact`, 404
+- All catalogue data read live from Supabase
+- Loading / empty / error / not-found states throughout
+
+## Phase 5c - Admin catalogue management (done 2026-09-23)
+- Supabase Auth login, `profiles.role = 'admin'`, protected `/admin/*` routes
+- Products CRUD with images, specs, publish/draft/archive
+- Categories and brands CRUD with logo/image upload
+- Media overview
+- Result: product, category, and brand updates no longer need code changes
+
 ## Phase 6 - Trust and local identity
 Tasks:
 - real shop imagery
