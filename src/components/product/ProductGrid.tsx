@@ -4,6 +4,7 @@ import { ProductCard } from './ProductCard'
 import { Skeleton } from '../common/Skeleton'
 import { ErrorState } from '../common/ErrorState'
 import { EmptyState } from '../common/EmptyState'
+import { RAIL_CONTAINER, RAIL_ITEM } from '../common/scrollRail'
 
 type ProductGridProps = {
   products: Product[] | null
@@ -15,11 +16,18 @@ type ProductGridProps = {
   emptyAction?: ReactNode
   columns?: 3 | 4
   skeletonCount?: number
+  /** 'rail' swipes horizontally on phones and becomes the normal grid from `sm` up; 'grid' (default) stacks vertically at every width — see Shop.tsx for why the full catalogue keeps 'grid'. */
+  layout?: 'grid' | 'rail'
 }
 
-const COLUMN_CLASSES: Record<3 | 4, string> = {
-  3: 'grid grid-cols-1 gap-5 sm:grid-cols-2 lg:grid-cols-3',
-  4: 'grid grid-cols-1 gap-5 sm:grid-cols-2 lg:grid-cols-4',
+const COLUMN_SUFFIX: Record<3 | 4, string> = {
+  3: 'grid-cols-1 sm:grid-cols-2 lg:grid-cols-3',
+  4: 'grid-cols-1 sm:grid-cols-2 lg:grid-cols-4',
+}
+
+function containerClasses(columns: 3 | 4, layout: 'grid' | 'rail') {
+  const cols = COLUMN_SUFFIX[columns]
+  return layout === 'rail' ? `${RAIL_CONTAINER} ${cols}` : `grid gap-5 ${cols}`
 }
 
 function ProductCardSkeleton() {
@@ -47,13 +55,20 @@ export function ProductGrid({
   emptyAction,
   columns = 4,
   skeletonCount = 4,
+  layout = 'grid',
 }: ProductGridProps) {
   if (loading) {
     return (
-      <div className={COLUMN_CLASSES[columns]} aria-busy="true" aria-live="polite">
-        {Array.from({ length: skeletonCount }, (_, index) => (
-          <ProductCardSkeleton key={index} />
-        ))}
+      <div className={containerClasses(columns, layout)} aria-busy="true" aria-live="polite">
+        {Array.from({ length: skeletonCount }, (_, index) =>
+          layout === 'rail' ? (
+            <div key={index} className={RAIL_ITEM}>
+              <ProductCardSkeleton />
+            </div>
+          ) : (
+            <ProductCardSkeleton key={index} />
+          ),
+        )}
       </div>
     )
   }
@@ -67,10 +82,16 @@ export function ProductGrid({
   }
 
   return (
-    <div className={COLUMN_CLASSES[columns]}>
-      {products.map((product) => (
-        <ProductCard key={product.id} product={product} />
-      ))}
+    <div className={containerClasses(columns, layout)}>
+      {products.map((product) =>
+        layout === 'rail' ? (
+          <div key={product.id} className={RAIL_ITEM}>
+            <ProductCard product={product} />
+          </div>
+        ) : (
+          <ProductCard key={product.id} product={product} />
+        ),
+      )}
     </div>
   )
 }

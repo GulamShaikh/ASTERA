@@ -30,6 +30,16 @@ body {
   }
 }
 
+/* Mobile card rails (ProductGrid/CategoryGrid/BrandGrid `layout="rail"`) scroll by touch/swipe — the scrollbar is redundant chrome, not a control anyone needs. */
+.hide-scrollbar {
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+}
+
+.hide-scrollbar::-webkit-scrollbar {
+  display: none;
+}
+
 :focus-visible {
   outline: 2px solid var(--color-cosmic-blue);
   outline-offset: 2px;

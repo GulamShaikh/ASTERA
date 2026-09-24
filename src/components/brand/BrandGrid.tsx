@@ -4,6 +4,7 @@ import { Skeleton } from '../common/Skeleton'
 import { ErrorState } from '../common/ErrorState'
 import { EmptyState } from '../common/EmptyState'
 import { IconStar } from '../common/icons'
+import { RAIL_CONTAINER, RAIL_ITEM } from '../common/scrollRail'
 
 type BrandGridProps = {
   brands: Brand[] | null
@@ -11,6 +12,14 @@ type BrandGridProps = {
   error: Error | null
   onRetry?: () => void
   skeletonCount?: number
+  /** 'rail' swipes horizontally on phones and becomes the normal grid from `md` up; 'grid' (default) stacks vertically at every width. */
+  layout?: 'grid' | 'rail'
+}
+
+const COLS = 'grid-cols-1 md:grid-cols-3'
+
+function containerClasses(layout: 'grid' | 'rail') {
+  return layout === 'rail' ? `${RAIL_CONTAINER} ${COLS}` : `grid gap-5 ${COLS}`
 }
 
 function BrandCardSkeleton() {
@@ -30,13 +39,19 @@ function BrandCardSkeleton() {
   )
 }
 
-export function BrandGrid({ brands, loading, error, onRetry, skeletonCount = 3 }: BrandGridProps) {
+export function BrandGrid({ brands, loading, error, onRetry, skeletonCount = 3, layout = 'grid' }: BrandGridProps) {
   if (loading) {
     return (
-      <div className="grid grid-cols-1 gap-5 md:grid-cols-3" aria-busy="true" aria-live="polite">
-        {Array.from({ length: skeletonCount }, (_, index) => (
-          <BrandCardSkeleton key={index} />
-        ))}
+      <div className={containerClasses(layout)} aria-busy="true" aria-live="polite">
+        {Array.from({ length: skeletonCount }, (_, index) =>
+          layout === 'rail' ? (
+            <div key={index} className={RAIL_ITEM}>
+              <BrandCardSkeleton />
+            </div>
+          ) : (
+            <BrandCardSkeleton key={index} />
+          ),
+        )}
       </div>
     )
   }
@@ -56,10 +71,16 @@ export function BrandGrid({ brands, loading, error, onRetry, skeletonCount = 3 }
   }
 
   return (
-    <div className="grid grid-cols-1 gap-5 md:grid-cols-3">
-      {brands.map((brand) => (
-        <BrandCard key={brand.id} brand={brand} />
-      ))}
+    <div className={containerClasses(layout)}>
+      {brands.map((brand) =>
+        layout === 'rail' ? (
+          <div key={brand.id} className={RAIL_ITEM}>
+            <BrandCard brand={brand} />
+          </div>
+        ) : (
+          <BrandCard key={brand.id} brand={brand} />
+        ),
+      )}
     </div>
   )
 }

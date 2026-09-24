@@ -37,6 +37,7 @@ export function BrandDiscovery({ state }: BrandDiscoveryProps) {
           loading={loading}
           error={error}
           onRetry={refetch}
+          layout="rail"
         />
 
         {brands && brands.length > 0 && (

@@ -68,6 +68,7 @@ export function NewArrivals({ state }: NewArrivalsProps) {
           onRetry={refetch}
           emptyTitle="No products published yet"
           emptyDescription="New arrivals will appear here as ASTERA's catalogue grows."
+          layout="rail"
         />
 
         {products && products.length > 0 && (

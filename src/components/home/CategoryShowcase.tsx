@@ -29,6 +29,7 @@ export function CategoryShowcase({ state }: CategoryShowcaseProps) {
           loading={loading}
           error={error}
           onRetry={refetch}
+          layout="rail"
         />
       </Container>
     </section>
